@@ -1,0 +1,11 @@
+import "strings"
+
+func numJewelsInStones(jewels string, stones string) int {
+    jewelsCount := 0
+
+    for _, jewel := range strings.Split(jewels, "") {
+        jewelsCount += strings.Count(stones, jewel)
+    }
+
+    return jewelsCount
+}

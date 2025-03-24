@@ -1,0 +1,21 @@
+func summaryRanges(nums []int) []string {
+    ans := []string{}
+    numsSize := len(nums)
+
+    for i:=0; i<numsSize;i++ {
+        start := nums[i]
+
+        for i<(numsSize - 1) && nums[i + 1] == nums[i]+1 {
+            i++;
+        }
+
+        if start != nums[i] {
+            ans = append(ans, fmt.Sprintf("%d->%d", start, nums[i]))
+            continue
+        }
+
+        ans = append(ans, fmt.Sprintf("%d", nums[i]))
+    }
+
+    return ans
+}
