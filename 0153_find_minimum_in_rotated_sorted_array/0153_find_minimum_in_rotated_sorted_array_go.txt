@@ -1,0 +1,31 @@
+func findMin(nums []int) int {
+    minVal := nums[0]
+    j := (len(nums) - 1)
+
+    for i := 0; i < ((len(nums)/2) + 1); i++ {
+        if minVal > nums[i] {
+            minVal = nums[i]
+        }
+        if minVal > nums[j] {
+            minVal = nums[j]
+        }
+
+        j--
+	}
+
+    return minVal
+}
+
+//--------------------------------------------------------
+
+func findMin(nums []int) int {
+    minVal := nums[0]
+    for _, num := range nums {
+        if num < minVal {
+            minVal = num
+        }
+    }
+    return minVal
+}
+
+

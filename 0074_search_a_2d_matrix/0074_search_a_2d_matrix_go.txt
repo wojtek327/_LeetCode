@@ -1,0 +1,43 @@
+//O(log(matrixSize))+O(log(matrixColSize))=O(log(matrixSize⋅matrixColSize))
+func searchMatrix(matrix [][]int, target int) bool {
+    if(len(matrix) == 0) {
+        return false
+    }
+
+    m := len(matrix)
+    n := len(matrix[0])
+
+    left := 0
+    right := m - 1
+
+    for left <= right {
+        mid := left + (right - left)/2
+
+        if matrix[mid][0] <= target && matrix[mid][n-1] >= target {
+            leftRow := 0
+            rightRow := n - 1
+            for leftRow <= rightRow {
+                midrow := leftRow + (rightRow - leftRow)/2
+
+                if matrix[mid][midrow] == target {
+                    return true
+                }
+
+                if matrix[mid][midrow] < target {
+                    leftRow = midrow + 1
+                } else {
+                    rightRow = midrow - 1
+                }
+            }
+            return false
+        }
+
+        if(matrix[mid][0] > target) {
+            right = mid - 1
+        } else {
+            left = mid + 1
+        }
+    }
+
+    return false
+}
