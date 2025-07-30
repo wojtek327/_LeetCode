@@ -1,0 +1,13 @@
+func fib(n int) int {
+    prev1 := 0;
+    prev2 := 1;
+    fibNum := 0; 
+
+    for i := 0; i<n; i++ {
+        fibNum = prev1 + prev2;
+        prev1 = prev2; 
+        prev2 = fibNum;
+    }
+
+    return prev1;
+}

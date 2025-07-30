@@ -129,3 +129,77 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
     }
     return (root);
 }
+
+//-----------------------------------------------------------
+
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+    // Jeśli jedna z list jest pusta, zwracamy drugą,
+    //Jeśli obie są puste to powinniśmy zwrócić NULL
+    //I tak się stanie jak zwrócimy drugą z nich
+    if (list1 == NULL) { return list2; }
+    if (list2 == NULL) { return list1; }
+
+    // Wskaźnik do wynikowej listy
+    struct ListNode* mergedList = NULL;
+
+    // Wskaźnik do ostatniego elementu w wynikowej liście
+    struct ListNode** lastPtrRef = &mergedList;
+
+    // Przechodzimy przez listy, aż jedna z nich się skończy
+    while (list1 != NULL && list2 != NULL) {
+        if (list1->val <= list2->val) {
+            *lastPtrRef = list1;
+            list1 = list1->next;
+        } else {
+            *lastPtrRef = list2;
+            list2 = list2->next;
+        }
+        lastPtrRef = &((*lastPtrRef)->next);
+    }
+
+    // Dodajemy pozostałe elementy jednej z list
+    if (list1 != NULL) {
+        *lastPtrRef = list1;
+    } else {
+        *lastPtrRef = list2;
+    }
+
+    return mergedList;
+}
+
+//----------------------------------
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+    if (list1 == NULL) { return list2; }
+    if (list2 == NULL) { return list1; }
+
+    struct ListNode dummy;
+    dummy.next = NULL;
+    struct ListNode* tail = &dummy;
+
+    while (list1 != NULL && list2 != NULL) {
+        if (list1->val <= list2->val) {
+            tail->next = list1;
+            list1 = list1->next;
+        } else {
+            tail->next = list2;
+            list2 = list2->next;
+        }
+        tail = tail->next;
+    }
+
+    if (list1 != NULL) {
+        tail->next = list1;
+    } else {
+        tail->next = list2;
+    }
+
+    return dummy.next;
+}

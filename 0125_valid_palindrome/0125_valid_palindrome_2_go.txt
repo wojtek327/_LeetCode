@@ -1,0 +1,25 @@
+func isPalindrome(s string) bool {
+    start := 0
+    end := len(s) - 1
+
+    for start < end {
+        for start < end && !unicode.IsLetter(rune(s[start])) && !unicode.IsDigit(rune(s[start])) {
+            start++
+        }
+        for start < end && !unicode.IsLetter(rune(s[end])) && !unicode.IsDigit(rune(s[end])) {
+            end--
+        }
+
+        c1 := unicode.ToLower(rune(s[start]))
+        c2 := unicode.ToLower(rune(s[end]))
+
+        if c1 != c2 {
+            return false
+        }
+
+        start++
+        end--
+    }
+
+    return true
+}

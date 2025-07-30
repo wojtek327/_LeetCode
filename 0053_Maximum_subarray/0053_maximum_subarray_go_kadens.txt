@@ -1,0 +1,19 @@
+func max(num1, num2 int) int {
+    if num1 > num2 {
+        return num1
+    }
+    return num2
+}
+
+func maxSubArray(nums []int) int {
+    res := nums[0]
+    maxEnding := nums[0]
+    n := len(nums)
+
+    for i := 1; i<n; i++ {
+        maxEnding = max(maxEnding + nums[i], nums[i])
+        res = max(res, maxEnding)
+    }
+
+    return res
+}

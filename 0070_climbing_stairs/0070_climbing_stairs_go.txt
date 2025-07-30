@@ -1,0 +1,13 @@
+func climbStairs(n int) int {
+    prev1 := 0
+    prev2 := 1
+    seq := 0
+
+    for i := 0; i<n; i++ {
+        seq = prev1 + prev2
+        prev1 = prev2
+        prev2 = seq
+    }
+
+    return seq
+}

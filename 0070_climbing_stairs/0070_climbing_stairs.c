@@ -30,3 +30,19 @@ int climbStairs(int n) {
 
     return b;
 }
+
+//-------------------------
+
+int climbStairs(int n) {
+    int prev1 = 0; 
+    int prev2 = 1;
+    int seq = 0;
+
+    for(uint8_t i = 0; i<n; i++) {
+        seq = prev1 + prev2;
+        prev1 = prev2;
+        prev2 = seq;
+    }
+
+    return seq; 
+}
